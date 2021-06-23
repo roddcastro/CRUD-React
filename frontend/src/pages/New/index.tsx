@@ -16,14 +16,15 @@ interface Cadastro {
 const New: React.FC = () => {
   const { params } = useRouteMatch<ClientesParametros>()
   const [clientes, setClientes] = useState<Cadastro[]>([])
-  const [id, setId] = useState<Cadastro[]>([])
-  const [cliente, setCliente] = useState<Cadastro[]>([])
-  const [telefone, setTelefone] = useState<Cadastro[]>([])
-  const [email, setEmail] = useState<Cadastro[]>([])
+  const [id, setId] = useState('')
+  const [cliente, setCliente] = useState('')
+  const [telefone, setTelefone] = useState('')
+  const [email, setEmail] = useState('')
 
   useEffect(() => {
     async function loadData() {
       const dados = await api.get(`/clients/${params.id}`).then(response => response.data)
+      console.log('dados', dados)
       if(dados) {
         setId(dados.id)
         setCliente(dados.cliente)
@@ -32,7 +33,8 @@ const New: React.FC = () => {
       }else{
         setClientes([])
       }
-    }loadData()
+    }
+    loadData()
   }, [])
 
   async function handleAddClientes(event: any) {
@@ -47,15 +49,26 @@ const New: React.FC = () => {
     }
 
     console.log(novoCadastro)
-    await api.post('/clients', novoCadastro)
+    if(id){
+      await api.put(`/clients/${id}`, novoCadastro)
+      alert('Dados alterados com sucesso!')
+    }else{
+      await api.post('/clients', novoCadastro)
+      alert('Dados cadastrados com sucesso!')
+    }
+
+    setCliente('')
+    setTelefone('')
+    setEmail('')
+
     setClientes([...clientes, novoCadastro])
     form.reset()
   }
   return (
     <Form onSubmit={handleAddClientes}>
-      <input type='text' name='cliente' placeholder='Cliente' />
-      <input type='text' name='telefone' placeholder='Telefone' />
-      <input type='text' name='email' placeholder='Email' />
+      <input type='text' name='cliente' value={cliente} onChange={e => setCliente(e.target.value)} placeholder='Cliente' />
+      <input type='text' name='telefone' value={telefone} onChange={e => setTelefone(e.target.value)} placeholder='Telefone' />
+      <input type='text' name='email' value={email} onChange={e => setEmail(e.target.value)} placeholder='Email' />
       <button type='submit'>Enviar</button>
     </Form>
   )

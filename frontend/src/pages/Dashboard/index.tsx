@@ -22,6 +22,7 @@ const Dashboard: React.FC = () => {
   async function handleDelete(id: string){
     await api.delete(`/clients/${id}`)
     setClientes(clientes.filter(cli => cli.id != id))
+    alert('Cliente deletado com sucesso!')
   }
 
   return (

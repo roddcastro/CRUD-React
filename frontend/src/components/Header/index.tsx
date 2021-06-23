@@ -7,7 +7,7 @@ const Header: React.FC = () => {
   return (
     <Container>
       <Content>
-        <Link to='/new'>
+        <Link to='/new/novo'>
           <button type="button">Novo Cadastro</button>
         </Link>
 
