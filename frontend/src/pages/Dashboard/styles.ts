@@ -10,6 +10,11 @@ export const Container = styled.div`
     width: 50%;
   }
 
+  th {
+    background: blue;
+    color: white;
+  }
+
   td {
     padding: 15px;
   }
