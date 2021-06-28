@@ -2,12 +2,14 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 580px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 0 30px;
 
   table {
-    width: 50%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
   }
 
   th {
@@ -17,10 +19,11 @@ export const Container = styled.div`
 
   td {
     padding: 15px;
+    border: 1px solid black;
   }
 
   button {
-    padding: 5px 15px;
+    margin-left: 10px;
     border-radius: 6px;
     border: 0;
     background: blue;

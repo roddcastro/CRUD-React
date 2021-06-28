@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Container = styled.header`
-  background: #fff;
   height: 62px;
   border-bottom: 1px solid #DDD;
 `
@@ -16,6 +15,4 @@ export const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-
 `

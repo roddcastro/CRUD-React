@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import InputMask from "react-input-mask";
 import { useEffect } from 'react'
 import { useRouteMatch } from 'react-router-dom'
 import api from '../../services/api'
@@ -13,6 +14,7 @@ interface Cadastro {
   telefone: string;
   email: string;
 }
+
 const New: React.FC = () => {
   const { params } = useRouteMatch<ClientesParametros>()
   const [clientes, setClientes] = useState<Cadastro[]>([])
@@ -67,7 +69,7 @@ const New: React.FC = () => {
   return (
     <Form onSubmit={handleAddClientes}>
       <input type='text' name='cliente' value={cliente} onChange={e => setCliente(e.target.value)} placeholder='Cliente' />
-      <input type='text' name='telefone' value={telefone} onChange={e => setTelefone(e.target.value)} placeholder='Telefone' />
+      <InputMask type='text' name='telefone' mask="(99) 9999-9999" value={telefone} onChange={e => setTelefone(e.target.value)} placeholder='Telefone' />
       <input type='text' name='email' value={email} onChange={e => setEmail(e.target.value)} placeholder='Email' />
       <button type='submit'>Enviar</button>
     </Form>
